@@ -1,0 +1,14 @@
+AddDefaultCharset UTF-8
+<IfModule mod_rewrite.c>
+  Options All -Indexes
+  # Включаем mod_rewrite
+  RewriteEngine On
+  # redirect с www на без www
+  RewriteCond %{HTTP_HOST} ^www\.(.*)$
+  RewriteRule ^(.*)$ http://%1/$1 [L,R=301]
+  # Если это папка или файл, открываем её/его
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !-l
+  RewriteRule ^(.+)$ index.php [L]
+</IfModule>

@@ -1,0 +1,37 @@
+{
+    "config": {
+        "sort-packages": true
+    },
+    "require": {
+        "php": ">=7.4.0",
+        "ext-PDO": "^7.4"
+    },
+    "require-dev": {
+        "doctrine/data-fixtures": "^1.3",
+        "filp/whoops": "^2.2",
+        "phpunit/phpunit": "^9.0",
+        "roave/security-advisories": "dev-master",
+        "squizlabs/php_codesniffer": "^3.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/App/",
+            "Framework\\": "src/Framework/",
+            "Tests\\": "tests/"
+        },
+        "files": ["libs/functions.php"]
+    },
+    "scripts": {
+        "serve": "php -S 0.0.0.0:8080 -t public",
+        "check": [
+            "@cs-check",
+            "@test"
+        ],
+        "test": "phpunit --colors=always",
+        "cs-check": "phpcs",
+        "cs-fix": "phpcbf",
+        "app": "php bin/app.php --ansi",
+        "development-enable": "ln -sr config/autoload/development.local.php.dist config/autoload/development.local.php",
+        "development-disable": "rm config/autoload/development.local.php"
+    }
+}
